@@ -44,6 +44,7 @@ private int dqhouse;
 			if(main.pay(p,(int) getconfig("house"+main.its(house)+"_qian",pointint))) {
 				dqhouse=house;
 				setowner(p);
+				this.setmortgageqian((int) getconfig("house1_qian", pointint));
 				return true;
 			}
 			

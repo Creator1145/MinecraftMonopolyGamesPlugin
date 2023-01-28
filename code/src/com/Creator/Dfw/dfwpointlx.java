@@ -30,6 +30,33 @@ public Boolean ismortgage() {return ismortgage;}
 public void setismortgage(Boolean b) {ismortgage=b;}
 public int getmortgageqian() {return mortgageqian;}
 public void setmortgageqian(int i) {mortgageqian=i;}
+public Boolean mortgage(Player p,Boolean b) {
+	if(enablemortgage) {
+		if(b) {
+			if(!ismortgage) {
+				owner=null;
+				ismortgage=true;
+				mortgageplayer=p;
+				main.give(p, mortgageqian);
+				return true;
+			}
+			
+		}else {
+		if(ismortgage) {
+			if(main.pay(p, mortgageqian)) {
+				owner=p;
+				ismortgage=false;
+				mortgageplayer=null;
+				return true;
+			}
+		}
+			
+			
+			
+		}
+	}
+	return false;
+}
 /**
  * 设置该点的所有者
  * @param p 欲设置该点的所有者的玩家

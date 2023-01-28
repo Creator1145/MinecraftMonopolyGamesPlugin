@@ -28,6 +28,7 @@ import org.bukkit.plugin.Plugin;
 
 import com.Creator.Dfw.color;
 import com.Creator.Dfw.main;
+import com.Creator.Dfw.gui.MortgageGui;
 import com.Creator.Dfw.gui.teamgui;
 import com.Creator.Dfw.staticevent.DfwForwardEvent;
 import com.Creator.Dfw.staticevent.DfwForwardEvent_Done;
@@ -151,6 +152,25 @@ ItemStack	is=e.getItemDrop().getItemStack();
 		e.setCancelled(true);
 		if(e.getInventory().getTitle().equals(color.color(plugin.getConfig().getString("MortgageGui.title")))) {
 			
+			int c=e.getSlot();
+			int n=-1;
+			Player p =(Player) e.getWhoClicked();
+			for(int i = 0;i<main.point.size();i++) {
+				if(p.equals(main.point.get(i).getlx().getowner())||p.equals(main.point.get(i).getlx().getmortgageplayer())) {
+					n++;
+					
+				}
+				if(n==c) {
+					if(main.point.get(n).getlx().ismortgage()) {
+				main.point.get(n).getlx().mortgage(p,false);
+						
+					}else {
+						main.point.get(n).getlx().mortgage(p,true);
+					}
+					break;
+				}
+			}
+			MortgageGui.open(p);
 		}
 		if(e.getInventory()!=null&&e.getInventory().getName().equals(color.color(plugin.getConfig().getString("gui(team)_Title")))){
 			Player p = (Player) e.getWhoClicked();
