@@ -1,0 +1,44 @@
+package com.Creator.Dfw.staticevent;
+
+import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
+import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
+/**
+ * 玩家将甩甩子时触发
+ * @author Creator
+ *
+ */
+public class DfwSszEvent extends Event implements Cancellable{
+	private static final HandlerList handlers = new HandlerList();
+	private boolean cancelled = false;
+	private Player player ;
+	private String c;
+
+	@Override
+	public HandlerList getHandlers() {
+		return handlers;
+	}
+  public DfwSszEvent(Player p,String cause) {super(); c=cause;player=p;}
+  /**
+   * 是否取消了
+   */
+public boolean isCancelled() { return this.cancelled; }
+/**
+ * 获取甩甩子的原因
+ * @return 甩甩子的原因
+ */
+public String getcause() {return c;}
+/**
+ * 获取甩甩子的玩家
+ * @return 甩甩子的玩家
+ */
+public Player getplayer() {
+	return player;
+}
+/**
+ * 设置是否取消
+ */
+  public void setCancelled(boolean cancelled) { this.cancelled = cancelled; }
+	  public static HandlerList getHandlerList() { return handlers; }
+}

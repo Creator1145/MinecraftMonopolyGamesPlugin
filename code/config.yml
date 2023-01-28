@@ -1,0 +1,108 @@
+game_enable: false
+maxplayer: 3
+FoodLevelChange: true
+startitem: 'DIAMOND'
+startitem_name: '&b开始游戏'
+startitem_lore:
+ - '&c仅管理员'
+reitem: 'BED'
+reitem_name: '&c退出游戏'
+reitem_lore:
+ - '&c退出游戏'
+jzitem: 'BARRIER'
+jzitem_name: ''
+jzitem_lore:
+ - ''
+teamitem: 'IRON_SWORD'
+teamitem_name: '选择队伍'
+teamitem_lore:
+ - 'awa'
+pointczitem:
+  ==: org.bukkit.inventory.ItemStack
+  type: IRON_PICKAXE
+  meta:
+    ==: ItemMeta
+    meta-type: UNSPECIFIC
+    display-name: "\u70b9\u4f4d\u64cd\u4f5c"
+    lore:
+    - qwq
+game_start_motd: '&b游戏中'
+game_wait_motd: '&e等待中{player}/{maxplayer}'
+game_full_motd: '&c游戏已满' 
+state:
+ 1:
+  name: '甩甩子'
+  time: 120
+ 2:
+  name: '操作'
+  time: 250 
+sz:
+ - '- 1 -'
+ - '- 2 -'
+ - '- 3 -'
+ - '- 4 -'
+ - '- 5 -'
+ - '- 6 -'
+sz_player_xtitle: '你正在甩甩子' 
+resourcepack:
+ enable: false
+ url: 'you resourcepack url'
+ must: false
+ text: '推荐使用专用材质包进行游戏，点击这里应用！'
+ showtext: '点击以下载专用材质包'
+waittime: 120
+csqian: 5000
+jgqdqian: 1000
+sb_player_gamenotstart_name: '&e&lDfw'
+sb_player_gamenotstart:
+ - '&b玩家:{dqplayerint}/{playerstartint}'
+ - '&b剩余时间:{starttime}'
+ - '&eminecrfat.net'
+sb_player_gamestart_name: '&e&lDfw'
+sb_player_gamestart:
+ - '&b当前玩家:{dqplayer}'
+ - '&b你所在点:{point}'
+ - '&eminecrfat.net'  
+playerint: 4
+time5: '&b5'
+time4: '&b4'
+time3: '&e3'
+time2: '&e2'
+time1: '&c1'
+ltitle: '&a游戏即将开始'
+starthomeLocation:
+ world:
+ x: 
+ y:
+ z:
+startgameLocation:
+ world:
+ x: 
+ y:
+ z: 
+nameontab: '{teamcolor}{playername}'
+teamfullmsg: '&c队伍已满！'
+team:
+ - 'RED'
+ - 'BLUE'
+ - 'GREEN'
+teamname:
+ - '红'
+ - '蓝'
+ - '绿' 
+gui(team)_Title: Team
+gui(team)_Number of squares: 9 
+MortgageGui:
+ title: '&bMortgageGui'
+ Number of squares: 54
+ item:
+    Mortgage:
+        name: '&a{pointname}'
+        lore:
+            - '&a这个地点可以抵押'
+            - '&a抵押可获得&e{pointqian}'
+    notMortgage:
+        name: '&c{pointname}[已抵押]'
+        lore:
+            - '&c这个地点已被抵押'
+            - '&c赎回需要&e{pointqian}'    

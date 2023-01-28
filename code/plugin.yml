@@ -1,0 +1,9 @@
+name: Dfw
+main: com.Creator.Dfw.main
+version: 1.0.0
+author: Craetor
+depends: Citizens
+commands:
+   dfw:
+      description: dfw
+      usage: /dfw help
