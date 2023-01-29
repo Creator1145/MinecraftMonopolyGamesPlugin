@@ -1,8 +1,6 @@
 package com.Creator.Dfw.gui;
 
-import java.util.Collections;
 import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
@@ -10,13 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.Plugin;
-
 import com.Creator.Dfw.color;
 import com.Creator.Dfw.dfwpoint;
 import com.Creator.Dfw.main;
-
-
 
 public class MortgageGui {
 	public static void open(Player p) {

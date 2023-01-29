@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,7 +14,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -23,29 +21,22 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.Plugin;
 
 import com.Creator.Dfw.color;
 import com.Creator.Dfw.main;
 import com.Creator.Dfw.gui.MortgageGui;
 import com.Creator.Dfw.gui.teamgui;
-import com.Creator.Dfw.staticevent.DfwForwardEvent;
-import com.Creator.Dfw.staticevent.DfwForwardEvent_Done;
 import com.Creator.Dfw.staticevent.DfwNextPlayerEvent;
 import com.Creator.Dfw.staticevent.DfwNextStateEvent;
+import com.Creator.Dfw.staticevent.DfwPlayerMortgageEvent;
+import com.Creator.Dfw.staticevent.DfwPlayerMortgageEvent_Done;
 import com.Creator.Dfw.staticevent.DfwPointCzItemRightClick;
 import com.Creator.Dfw.staticevent.DfwSszEvent_Done;
 import com.Creator.Dfw.staticevent.DfwgamestartEvent;
-
 import com.Creator.Dfw.team.team;
-import com.Creator.Dfw.team.teamcolor;
-
 import net.citizensnpcs.api.CitizensAPI;
 import net.citizensnpcs.api.npc.NPC;
-import net.citizensnpcs.api.npc.NPCRegistry;
-import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
@@ -114,6 +105,7 @@ ItemStack	is=e.getItemDrop().getItemStack();
 			if(p.getItemInHand().equals(main.getitem(4))) {
 				
 				Set hs=null;
+				@SuppressWarnings("unchecked")
 				Location l = p.getTargetBlock(hs,100).getLocation();
 				l.setY(l.getY()+1);
 				p.teleport(l);
@@ -161,12 +153,17 @@ ItemStack	is=e.getItemDrop().getItemStack();
 					
 				}
 				if(n==c) {
-					if(main.point.get(n).getlx().ismortgage()) {
-				main.point.get(n).getlx().mortgage(p,false);
-						
-					}else {
-						main.point.get(n).getlx().mortgage(p,true);
+					DfwPlayerMortgageEvent event =new DfwPlayerMortgageEvent(main.point.get(n), e.getView(), e.getSlotType(), e.getSlot(), e.getClick(), e.getAction());
+					Bukkit.getPluginManager().callEvent(event );
+					if(!event.isCancelled()) {
+						if(main.point.get(n).getlx().ismortgage()) {
+							main.point.get(n).getlx().mortgage(p,false);
+									
+								}else {
+									main.point.get(n).getlx().mortgage(p,true);
+								}
 					}
+					Bukkit.getPluginManager().callEvent(new DfwPlayerMortgageEvent_Done(main.point.get(n), e.getView(), e.getSlotType(), e.getSlot(), e.getClick(), e.getAction()));
 					break;
 				}
 			}
@@ -209,6 +206,7 @@ ItemStack	is=e.getItemDrop().getItemStack();
 			
 		
 	}
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void Dfwgamestart(DfwgamestartEvent e) {
 		List<Player> pl = e.getgameplayers();
@@ -272,5 +270,8 @@ public void DfwNextPlayer(DfwNextPlayerEvent e) {
 public void DfwNextstate(DfwNextStateEvent e) {
 	System.out.print("准备下一个状态！当前状态:"+e.getdqstate().getname()+",后面为:"+e.getnextstate().getname());
 }
-
+@EventHandler
+public void DfwPlayerMortgageD(DfwPlayerMortgageEvent_Done e) {
+	e.getplayer().sendMessage("你抵押了:"+e.getpoint().getwz()+",你抵押全部可获得:"+main.getmortgageqian(e.getplayer()));
+}
 }

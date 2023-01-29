@@ -2,7 +2,7 @@ package com.Creator.Dfw;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
+
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -100,6 +100,7 @@ public HashMap<String,Object> getconfigsetting() {return configsetting;}
  */
 public void setconfigsettingfordfwconfig() {
 	Boolean o=false;
+	@SuppressWarnings({ "rawtypes", "unused" })
 	Iterator it = configsetting.keySet().iterator();
      Plugin plugin =com.Creator.Dfw.main.getPlugin(com.Creator.Dfw.main.class);
      ConfigurationSection c =plugin.getConfig().getConfigurationSection("point");

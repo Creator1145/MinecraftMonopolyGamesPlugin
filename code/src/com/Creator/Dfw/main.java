@@ -462,6 +462,24 @@ public static Boolean pay(Player p,int qian) {
 	return false;
 }
 /**
+ * 获得玩家可抵押资产全部抵押可获得的钱
+ * @param p 玩家
+ * @return 玩家可抵押资产全部抵押可获得的钱
+ */
+public static int getmortgageqian(Player p ) {
+	List<dfwpoint> temp=main.point;
+	int qian=0;
+	for(int i=0;i<temp.size();i++) {
+		dfwpoint point =temp.get(i);
+		if(point.getlx().isenablemortgage()) {
+			if(p.equals(point.getlx().getowner())) {
+				qian=qian+point.getlx().getmortgageqian();
+				}
+			}
+			}
+	return qian;
+}
+/**
  * 给玩家钱
  * @param p 玩家
  * @param qian 金额
